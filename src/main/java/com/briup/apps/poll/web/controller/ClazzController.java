@@ -77,23 +77,15 @@ public class ClazzController {
 		}
 	}
 	
-	@ApiOperation(value="添加班级信息")
-	@PostMapping("saveClazz")
-	public MsgResponse saveClazz(Clazz clazz){
+	@ApiOperation(value="添加或修改班级信息",notes="如果班级id不为空，表示更新操作;如果班级id为空，表示保存操作")
+	@PostMapping("saveOrUpdateClazz")
+	public MsgResponse saveOrUpdateClazz(Clazz clazz){
 		try {
-			clazzService.save(clazz);
-			return MsgResponse.success("success", null);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-	}
-	
-	@ApiOperation(value="修改班级信息")
-	@PostMapping("updateClazz")
-	public MsgResponse updateClazz(Clazz clazz){
-		try {
-			clazzService.update(clazz);
+			if(clazz!=null&&clazz.getId()!=null){
+				clazzService.update(clazz);
+			}else{
+				clazzService.save(clazz);
+			}	
 			return MsgResponse.success("success", null);
 		} catch (Exception e) {
 			e.printStackTrace();

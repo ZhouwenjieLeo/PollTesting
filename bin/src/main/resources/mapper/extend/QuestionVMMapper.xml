@@ -6,7 +6,6 @@
    select * from poll_question
    <!-- id name questionType -->
    </select>
-   
    <resultMap type="com.briup.apps.poll.bean.extend.QuestionVM" 
    id="QuestionVMResultMap">
       <id column="id" property="id"/>
@@ -20,7 +19,6 @@
           javaType="ArrayList"
           ofType="com.briup.apps.poll.bean.Options">
       </collection>
-      
       
    </resultMap>
    
