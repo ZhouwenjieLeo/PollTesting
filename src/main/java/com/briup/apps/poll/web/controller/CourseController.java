@@ -85,21 +85,21 @@ public class CourseController {
 		}
 	}
 	
-	@ApiOperation(value="批量删除课程信息")
-	@GetMapping("batchDeleteCourse")
-	public MsgResponse batchDeleteCourse(long[] ids){
-		try {
-			
-			System.out.println("==================="+ids);
-			courseService.batchDelete(ids);
-			
-			return MsgResponse.success("success", null);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-	}
-	
+//	@ApiOperation(value="批量删除课程信息")
+//	@GetMapping("batchDeleteCourse")
+//	public MsgResponse batchDeleteCourse(long[] ids){
+//		try {
+//			
+//			System.out.println("==================="+ids);
+//			courseService.batchDelete(ids);
+//			
+//			return MsgResponse.success("success", null);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return MsgResponse.error(e.getMessage());
+//		}
+//	}
+//	
 }
 
 
