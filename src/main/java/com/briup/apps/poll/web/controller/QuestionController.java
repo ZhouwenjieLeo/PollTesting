@@ -24,9 +24,6 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/question")
 public class QuestionController {
 
-	/**
-	 * @return
-	 */
 	@Autowired
 	private IQuestionService questionService;
 	
@@ -42,7 +39,7 @@ public class QuestionController {
 		}
 	}
 	
-	@ApiOperation(value="查询出所有的问题信息",notes="每个题目信息中包含该题目下所有的选项信息")
+	@ApiOperation(value="查询所有的问题信息",notes="每个题目信息中包含对应该题目下所有的选项信息")
 	@GetMapping("findAllQuestionVM")
 	public MsgResponse findAllQuestionVM(){
 		try {
@@ -101,7 +98,6 @@ public class QuestionController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
 	@ApiOperation(value="批量删除问题信息")
 	@GetMapping("batchDeleteQuestion")
 	public MsgResponse batchDeleteQuestion(long[] ids){

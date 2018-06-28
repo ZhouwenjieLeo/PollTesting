@@ -59,6 +59,7 @@ public class QuestionServiceImpl implements IQuestionService{
 	@Override
 	public void batchDelete(long[] ids) throws Exception {
 		for(long id : ids){
+			
 			questionMapper.deleteByPrimaryKey(id);
 		}
 	}
