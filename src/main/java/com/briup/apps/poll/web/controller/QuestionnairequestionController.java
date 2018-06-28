@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.apps.poll.bean.QuestionnaireQuestion;
+import com.briup.apps.poll.bean.extend.QuestionnaireQuestionVM;
+import com.briup.apps.poll.bean.extend.QuestionnaireVM;
 import com.briup.apps.poll.service.IQuestionnairequestionService;
 import com.briup.apps.poll.util.MsgResponse;
 
@@ -35,11 +37,23 @@ public class QuestionnairequestionController {
 		}
 	}
 
+	@ApiOperation(value="查询出所有的问卷桥表信息",notes="每个问卷桥表信息中包含所有的题目和问卷的的信息")
+	@GetMapping("findAllQuestionnaireQuestionVM")
+	public MsgResponse findAllQuestionnaireQuestionVM(){
+		try {
+			List<QuestionnaireQuestionVM> list = questionnairequestionService.findAllQuestionnaireQuestionVM();
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
 	@ApiOperation(value = "保存问题问卷桥表信息")
 	@PostMapping("saveQuestionnairequestion")
 	public MsgResponse saveQuestionnairequestion(QuestionnaireQuestion questionnairequestion) {
 		try {
-			questionnairequestionService.save(questionnairequestion);
+//			questionnairequestionService.save(questionnairequestionVM);
 			return MsgResponse.success("success", null);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -47,17 +61,17 @@ public class QuestionnairequestionController {
 		}
 	}
 
-	@ApiOperation(value = "修改问题问卷桥表信息")
-	@PostMapping("updateQuestionnairequestion")
-	public MsgResponse updateQuestionnairequestion(QuestionnaireQuestion questionnairequestion) {
-		try {
-			questionnairequestionService.update(questionnairequestion);
-			return MsgResponse.success("success", null);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-	}
+//	@ApiOperation(value = "修改问题问卷桥表信息")
+//	@PostMapping("updateQuestionnairequestion")
+//	public MsgResponse updateQuestionnairequestion(QuestionnaireQuestion questionnairequestion) {
+//		try {
+//			questionnairequestionService.update(questionnairequestion);
+//			return MsgResponse.success("success", null);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return MsgResponse.error(e.getMessage());
+//		}
+//	}
 
 	@ApiOperation(value = "通过id删除问题问卷桥表信息")
 	@GetMapping("deleteByIdQuestionnairequestion")

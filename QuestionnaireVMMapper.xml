@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.apps.poll.dao.extend.QuestionnaireVMMapper">
+   
+   <select id="selectAll" resultMap="QuestionnaireVMResultMap">
+   select * from poll_questionnaire
+   <!-- id name description createDate -->
+   </select>
+   
+   <resultMap type="com.briup.apps.poll.bean.extend.QuestionnaireVM" 
+   id="QuestionnaireVMResultMap">
+      <id column="id" property="id"/>
+      <result column="name" property="name"/>
+      <result column="description" property="description"/>
+      <result column="createDate"  property="createDate"/>
+      <!--  
+      <association  
+         column="question" 
+         select="com.briup.apps.poll.dao.QuestionMapper.selectByPrimaryKey" 
+         property="question">
+      </association>
+      -->
+      
+      <collection 
+          column="question"
+          select="selectQuestion"
+          property="question"
+          javaType="ArrayList"
+          ofType="com.briup.apps.poll.bean.Question">
+      </collection>
+      
+   </resultMap>
+   
+   <select 
+      id="selectQuestion" 
+      parameterType="com.briup.apps.poll.bean.Question"
+      resultType="com.briup.apps.poll.bean.Question">
+        select * from poll_question
+   </select>
+   
+</mapper>
