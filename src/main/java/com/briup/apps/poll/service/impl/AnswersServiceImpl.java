@@ -36,16 +36,6 @@ public class AnswersServiceImpl implements IAnswersService {
 		example.createCriteria().andCheckesLike(keywords);
 		return answersMapper.selectByExample(example);
 	}
-	@Override
-	public void save(Answers answers) throws Exception {
-		answersMapper.insert(answers);		
-	}
-
-	@Override
-	public void update(Answers answers) throws Exception {
-		answersMapper.updateByPrimaryKey(answers);
-		
-	}
 
 	@Override
 	public void deleteById(long id) throws Exception {
@@ -65,6 +55,20 @@ public class AnswersServiceImpl implements IAnswersService {
 	public List<AnswersVM> findAllAnswersVM() throws Exception {
 		return answersVMMapper.selectAll();
 	}
+
+	@Override
+	public void save(Answers answers) throws Exception {
+		// TODO Auto-generated method stub
+		answersMapper.insert(answers);
+	}
+
+	@Override
+	public void update(Answers answers) throws Exception {
+		// TODO Auto-generated method stub
+		answersMapper.updateByPrimaryKey(answers);
+	}
+
+	
 
 
 }
