@@ -65,11 +65,16 @@ public class OptionsController {
 		}
 	}
 	
-	@ApiOperation(value="添加选项信息")
-	@PostMapping("saveOptions")
-	public MsgResponse saveOptions(Options options){
+	@ApiOperation(value="添加选项信息",notes="如果选项id不为空，表示更新操作;如果选项id为空，表示保存操作")
+	@PostMapping("saveOrUpdateOptions")
+	public MsgResponse saveOrUpdateOptions(Options options){
 		try {
-			optionsService.save(options);
+			if(options!=null&&options.getId()!=null){
+				optionsService.update(options);
+			}else{
+				optionsService.save(options);
+			}
+			
 			return MsgResponse.success("success", null);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,17 +82,17 @@ public class OptionsController {
 		}
 	}
 	
-	@ApiOperation(value="修改选项信息")
-	@PostMapping("updateOptions")
-	public MsgResponse updateOptions(Options options){
-		try {
-			optionsService.update(options);
-			return MsgResponse.success("success", null);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-	}
+//	@ApiOperation(value="修改选项信息")
+//	@PostMapping("updateOptions")
+//	public MsgResponse updateOptions(Options options){
+//		try {
+//			optionsService.update(options);
+//			return MsgResponse.success("success", null);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return MsgResponse.error(e.getMessage());
+//		}
+//	}
 	
 	@ApiOperation(value="批量删除选项信息")
 	@GetMapping("batchDeleteOptions")
