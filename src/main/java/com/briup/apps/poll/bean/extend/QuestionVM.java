@@ -9,6 +9,7 @@ public class QuestionVM {
 	private Long id;
 	private String name;
 	private String QuestionType;
+	
 	private List<Options> options;     //一个题目所对应的所有选项信息
 
 	public Long getId() {
