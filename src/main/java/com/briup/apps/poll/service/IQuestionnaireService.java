@@ -9,15 +9,11 @@ public interface IQuestionnaireService {
 
 	List<Questionnaire> findAll() throws Exception;
 	
-//	List<QuestionnaireVM> findAllQuestionnaireVM() throws Exception;
+	QuestionnaireVM findById(long id) throws Exception;
 
 	List<Questionnaire> query(String keywords) throws Exception;
 	
-//	void saveOrUpdate(Questionnaire questionnaire) throws Exception;
-	
-	void save(Questionnaire questionnaire) throws Exception;
-	
-	void update(Questionnaire questionnaire) throws Exception;
+	void saveOrUpdate(Questionnaire questionnaire,long[] ids) throws Exception;
 	
 	void deleteById(long id) throws Exception;
 	

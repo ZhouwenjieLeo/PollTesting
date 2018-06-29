@@ -11,7 +11,7 @@ public class QuestionnaireVM {
 	private String description;
 	private String createData;
 	
-	private List<Question> question;
+	private List<QuestionVM> questionVMs;
 
 	public Long getId() {
 		return id;
@@ -45,12 +45,12 @@ public class QuestionnaireVM {
 		this.createData = createData;
 	}
 
-	public List<Question> getQuestion() {
-		return question;
+	public List<QuestionVM> getQuestionVMs() {
+		return questionVMs;
 	}
 
-	public void setQuestion(List<Question> question) {
-		this.question = question;
+	public void setQuestionVMs(List<QuestionVM> questionVMs) {
+		this.questionVMs = questionVMs;
 	}
 
 }
