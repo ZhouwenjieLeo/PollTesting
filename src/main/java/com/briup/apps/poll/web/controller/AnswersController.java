@@ -21,11 +21,9 @@ import io.swagger.annotations.ApiOperation;
 @Api(description = "答案管理相关接口")
 @RestController
 @RequestMapping("/answers")
-
 public class AnswersController {
 	@Autowired
 	private IAnswersService answersService;
-	
 	@ApiOperation(value="保存或更新答案信息",notes="如果参数中包含了id，说明这是一个更新操作。如果参数中不包含id，说明这是一个保存操作")
 	@PostMapping("saveOrUpdateAnswers")
     public MsgResponse saveOrUpdateAnswers(Answers answers){
@@ -43,10 +41,6 @@ public class AnswersController {
 			return MsgResponse.error(e.getMessage());
 		}
     } 
-	
-	
-	
-	
 	@ApiOperation(value = "查询所有答案信息")
 	@GetMapping("findAllAnswers")
 	public MsgResponse findAllAnswers() {
@@ -58,7 +52,6 @@ public class AnswersController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-
 	@ApiOperation(value="查询所有的答案信息",notes="每个答案信息中包含对应该题目下所有的课调信息")
 	@GetMapping("findAllAnswersVM")
 	public MsgResponse findAllAnswersVM(){
@@ -81,32 +74,7 @@ public class AnswersController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-
-//	@ApiOperation(value = "添加答案信息")
-//	@PostMapping("saveAnswers")
-//	public MsgResponse saveAnswers(Answers answers) {
-//		try {
-//			answersService.save(answers);
-//			return MsgResponse.success("success", null);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return MsgResponse.error(e.getMessage());
-//		}
-//	}
-
-//	@ApiOperation(value = "修改答案信息")
-//	@PostMapping("updateAnswers")
-//	public MsgResponse updateAnswers(Answers answers) {
-//		try {
-//			answersService.update(answers);
-//			return MsgResponse.success("success", null);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return MsgResponse.error(e.getMessage());
-//		}
-//	}
-
-	@ApiOperation(value = "通过ID删除答案信息")
+	@ApiOperation(value = "通过id删除答案信息")
 	@GetMapping("deleteByIdAnswers")
 	public MsgResponse deleteByIdAnswers(long id) {
 		try {
@@ -117,8 +85,7 @@ public class AnswersController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-
-	@ApiOperation(value = "批量删除答案信息")
+	@ApiOperation(value = "批量删除答案的信息")
 	@GetMapping("batchDeleteAnswers")
 	public MsgResponse batchDeleteAnswers(long[] ids) {
 		try {
@@ -129,5 +96,4 @@ public class AnswersController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-
 }

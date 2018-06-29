@@ -23,7 +23,7 @@ public class SchoolServiceImpl implements ISchoolService{
 		//创建空模板
 		SchoolExample example = new SchoolExample();
 		//调用QBE查询，并且将查询结果返回
-		return schoolMapper.selectByExample(example);
+		return schoolMapper.selectByExampleWithBLOBs(example);
 	}
 
 	@Override
