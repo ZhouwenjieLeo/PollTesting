@@ -1,6 +1,7 @@
 package com.briup.apps.poll.bean.extend;
 
 import com.briup.apps.poll.bean.Grade;
+
 import com.briup.apps.poll.bean.User;
 
 public class ClazzVM {

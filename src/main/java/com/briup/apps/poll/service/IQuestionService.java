@@ -13,9 +13,7 @@ public interface IQuestionService {
 	
 	List<Question> query(String keywords) throws Exception;
 	
-	void save(Question question) throws Exception;
-	
-	void update(Question question) throws Exception;
+	void saveOrUpdate(QuestionVM question) throws Exception;
 	
 	void deleteById(long id) throws Exception;
 	

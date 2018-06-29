@@ -9,7 +9,7 @@ public class AnswersVM {
 	private String checkes;
 	private String content;
 	
-	private Survey survey;
+	private Survey survey;  //一个答案所对应的课调相关的信息
 
 	public Long getId() {
 		return id;
@@ -50,5 +50,7 @@ public class AnswersVM {
 	public void setSurvey(Survey survey) {
 		this.survey = survey;
 	}
+
+	
 	
 }

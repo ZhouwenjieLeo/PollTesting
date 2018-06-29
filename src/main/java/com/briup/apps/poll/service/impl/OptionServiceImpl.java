@@ -38,7 +38,7 @@ public class OptionServiceImpl implements IOptionsService{
 
 	@Override
 	public void update(Options options) throws Exception {
-		optionsMapper.updateByPrimaryKey(options);
+		optionsMapper.updateByPrimaryKeyWithBLOBs(options);
 	}
 
 	@Override
