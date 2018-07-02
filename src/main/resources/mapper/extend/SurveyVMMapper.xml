@@ -3,8 +3,22 @@
 <mapper namespace="com.briup.apps.poll.dao.extend.SurveyVMMapper">
    
    <select id="selectAll" resultMap="SurveyVMResultMap">
-   select * from poll_survey 
+   select * from poll_survey
    <!-- id name description course_id clazz_id user_id questionnaire_id -->
+   </select>
+   
+   <select 
+   id="selectById" 
+   parameterType="long"
+   resultMap="SurveyVMResultMap">
+   select * from poll_survey where id=#{id}
+   </select>
+   
+   <select 
+   id="selectByStatus" 
+   parameterType="java.lang.String"
+   resultMap="SurveyVMResultMap">
+   select * from poll_survey where status = #{status}
    </select>
    
    <resultMap type="com.briup.apps.poll.bean.extend.SurveyVM" 
@@ -19,36 +33,25 @@
          select="com.briup.apps.poll.dao.CourseMapper.selectByPrimaryKey" 
          property="course">
       </association>
-        
+          
       <association  
          column="clazz_id" 
-         select="com.briup.apps.poll.dao.ClazzMapper.selectByPrimaryKey" 
-         property="clazz">
+         select="com.briup.apps.poll.dao.extend.ClazzVMMapper.selectById" 
+         property="clazzVM">
       </association>
       
       <association  
          column="user_id" 
          select="com.briup.apps.poll.dao.UserMapper.selectByPrimaryKey" 
-         property="user">
+         property="teacher">
       </association>
       
       <association  
          column="questionnaire_id" 
-         select="com.briup.apps.poll.dao.QuestionnaireMapper.selectByPrimaryKey" 
-         property="questionnaire">
-      </association>
-      
-      
+         select="com.briup.apps.poll.dao.extend.QuestionnaireVMMapper.selectById" 
+         property="qnVM">
+      </association>   
       
    </resultMap>
-   
-  <!--   
-   <select 
-      id="selectCourseByCourseId" 
-      parameterType="long"
-      resultType="com.briup.apps.poll.bean.Course">
-      select poll_course.name from poll_course,poll_survey where poll_survey.course_id=#{poll_course.id}
-   </select>
-   -->
-   
+ 
 </mapper>

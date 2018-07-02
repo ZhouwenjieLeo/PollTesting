@@ -4,9 +4,12 @@ import java.util.List;
 
 
 import com.briup.apps.poll.bean.Grade;
+import com.briup.apps.poll.bean.extend.GradeVM;
 
 public interface IGradeService {
 	List<Grade> findAll() throws Exception;
+	
+	List<GradeVM> findAllGradeVM() throws Exception;
 	
 	List<Grade> query(String keywords) throws Exception;
 	

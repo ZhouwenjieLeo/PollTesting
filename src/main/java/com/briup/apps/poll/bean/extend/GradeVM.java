@@ -6,7 +6,7 @@ public class GradeVM {
 
 	private Long id;
 	private String name;
-	private String description;
+	private String descriptioin;
 	
 	private School school;
 
@@ -26,12 +26,12 @@ public class GradeVM {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getDescriptioin() {
+		return descriptioin;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDescriptioin(String descriptioin) {
+		this.descriptioin = descriptioin;
 	}
 
 	public School getSchool() {
