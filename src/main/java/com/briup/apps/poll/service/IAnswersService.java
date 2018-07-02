@@ -3,22 +3,17 @@ package com.briup.apps.poll.service;
 import java.util.List;
 
 import com.briup.apps.poll.bean.Answers;
+import com.briup.apps.poll.bean.Course;
 import com.briup.apps.poll.bean.extend.AnswersVM;
 
 
 public interface IAnswersService {
-	List<Answers> findAll() throws Exception;
 	
-	List<Answers> query(String keywords) throws Exception;
-	
-	List<AnswersVM> findAllAnswersVM() throws Exception;
-	
-	void save(Answers answers) throws Exception;
-	
-	void update(Answers answers) throws Exception;
-	
-	void deleteById(long id) throws Exception;
-	
-	void batchDelete(long[] ids) throws Exception;
+	//提交或者更新答卷信息
+	   void saveOrUpdate(Answers answers)  throws Exception;
+	   
+	   List<Answers> findAll() throws Exception;
+	   
+	   void deleteById(long id) throws Exception;
 
 }
