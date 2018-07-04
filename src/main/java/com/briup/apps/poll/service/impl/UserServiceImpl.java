@@ -15,6 +15,16 @@ import com.briup.apps.poll.service.IUserService;
 public class UserServiceImpl implements IUserService {
 	@Autowired
 	private UserMapper userMapper;
+	
+	@Override
+	public void saveOrUpdate(User user) throws Exception {
+		if(user.getId()!=null){
+			userMapper.updateByPrimaryKey(user);
+		}else
+		{
+			userMapper.insert(user);
+		}		
+	}
 
 	@Override
 	public List<User> findAll() throws Exception {
@@ -31,17 +41,6 @@ public class UserServiceImpl implements IUserService {
 		return userMapper.selectByExample(example);
 	}
 
-	@Override
-	public void save(User user) throws Exception {
-		// TODO Auto-generated method stub
-		userMapper.insert(user);
-	}
-
-	@Override
-	public void update(User user) throws Exception {
-		// TODO Auto-generated method stub
-		userMapper.updateByPrimaryKey(user);
-	}
 
 	@Override
 	public void deleteById(long id) throws Exception {
@@ -56,5 +55,7 @@ public class UserServiceImpl implements IUserService {
 			userMapper.deleteByPrimaryKey(id);
 		}
 	}
+
+
 
 }
