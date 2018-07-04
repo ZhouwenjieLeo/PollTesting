@@ -50,7 +50,7 @@ public class GradeController {
 		}
 	}
 	
-	@ApiOperation(value="按关键字查询年级信息",notes="如果年级id不为空，表示更新操作;如果年级id为空，表示保存操作")
+	@ApiOperation(value="按关键字查询年级信息")
 	@GetMapping("queryGrade")
 	public MsgResponse queryGrade(String keywords){
 		try {
