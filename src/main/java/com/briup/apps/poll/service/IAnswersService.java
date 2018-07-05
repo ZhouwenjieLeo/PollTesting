@@ -5,6 +5,7 @@ import java.util.List;
 import com.briup.apps.poll.bean.Answers;
 import com.briup.apps.poll.bean.Course;
 import com.briup.apps.poll.bean.extend.AnswersVM;
+import com.briup.apps.poll.bean.extend.QuestionVM;
 
 
 public interface IAnswersService {
@@ -18,4 +19,6 @@ public interface IAnswersService {
 	   //通过课调id查找答案
 	   List<Answers> findAnswersBySurveyId(long surveyId) throws Exception;
 
+       
+	   List<AnswersVM> findAllAnswersVM() throws Exception;
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.briup.apps.poll.bean.Clazz;
 import com.briup.apps.poll.bean.Course;
 import com.briup.apps.poll.bean.User;
 import com.briup.apps.poll.service.IUserService;
@@ -26,6 +27,19 @@ public class UserController {
 	 */
 	@Autowired
 	private IUserService userService;
+	
+	@ApiOperation(value="添加或修改用户信息",notes="如果用户id不为空，表示更新操作;如果用户id为空，表示保存操作")
+	@PostMapping("saveOrUpdateUser")
+	public MsgResponse saveOrUpdateUser(User user){
+		try {
+			
+			userService.saveOrUpdate(user);
+		return MsgResponse.success("提交成功!", null);
+	} catch (Exception e) {
+		e.printStackTrace();
+		return MsgResponse.error(e.getMessage());
+	}
+}
 
 	@ApiOperation(value = "查询所有用户信息")
 	@GetMapping("findAllUser")
@@ -51,7 +65,7 @@ public class UserController {
 		}
 	}
 
-	@ApiOperation(value = "保存用户信息")
+	/*@ApiOperation(value = "保存用户信息")
 	@PostMapping("saveUser")
 	public MsgResponse saveUser(User user) {
 		try {
@@ -73,7 +87,7 @@ public class UserController {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
-	}
+	}*/
 
 	@ApiOperation(value = "通过id删除用户信息")
 	@GetMapping("deleteByIdUser")

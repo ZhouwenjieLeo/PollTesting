@@ -6,6 +6,18 @@
    select * from poll_question
    <!-- id name questionType -->
    </select>
+   
+   <select 
+   id="selectByQuestionnaireId" 
+   parameterType="long" 
+   resultMap="QuestionVMResultMap">
+   
+   select * from poll_question where id in(
+       select question_id from poll_qq where questionnaire_id=#{id}
+   )
+   
+   </select>
+   
    <resultMap type="com.briup.apps.poll.bean.extend.QuestionVM" 
    id="QuestionVMResultMap">
       <id column="id" property="id"/>
@@ -19,6 +31,7 @@
           javaType="ArrayList"
           ofType="com.briup.apps.poll.bean.Options">
       </collection>
+      
       
    </resultMap>
    

@@ -81,17 +81,14 @@ public class ClazzController {
 	@PostMapping("saveOrUpdateClazz")
 	public MsgResponse saveOrUpdateClazz(Clazz clazz){
 		try {
-			if(clazz!=null&&clazz.getId()!=null){
-				clazzService.update(clazz);
-			}else{
-				clazzService.save(clazz);
-			}	
-			return MsgResponse.success("success", null);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
+			
+            clazzService.saveOrUpdate(clazz);
+		return MsgResponse.success("提交成功!", null);
+	} catch (Exception e) {
+		e.printStackTrace();
+		return MsgResponse.error(e.getMessage());
 	}
+}
 	
 	@ApiOperation(value="批量删除班级信息")
 	@GetMapping("batchDeleteClazz")

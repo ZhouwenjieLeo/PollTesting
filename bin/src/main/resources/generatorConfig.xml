@@ -35,9 +35,9 @@
     </javaClientGenerator>
 
 	<!-- 映射配置 -->
-	<table tableName="poll_course" domainObjectName="Course" ></table>
+	<table tableName="poll_grade" domainObjectName="Grade" ></table>
+	 <table tableName="poll_course" domainObjectName="Course" ></table>
     <table tableName="poll_school" domainObjectName="School" ></table>
-    <table tableName="poll_grade" domainObjectName="Grade" ></table>
     <table tableName="poll_clazz" domainObjectName="Clazz" ></table>
     <table tableName="poll_user" domainObjectName="User" ></table>
 	<table tableName="poll_options" domainObjectName="Options" ></table>
@@ -45,7 +45,7 @@
     <table tableName="poll_questionnaire" domainObjectName="Questionnaire" ></table>
     <table tableName="poll_qq" domainObjectName="QuestionnaireQuestion" ></table>
 	<table tableName="poll_survey" domainObjectName="Survey" ></table>
-	<table tableName="poll_answers" domainObjectName="Answers" ></table>
+	<table tableName="poll_answers" domainObjectName="Answers" ></table> 
 
 
 

@@ -20,6 +20,18 @@ public class ClazzServiceImpl implements IClazzService{
 	@Autowired
 	private ClazzVMMapper clazzVMMapper;
 	
+	
+	@Override
+	public void saveOrUpdate(Clazz clazz) throws Exception {
+		if(clazz.getId()!=null){
+			clazzMapper.updateByPrimaryKeyWithBLOBs(clazz);
+		}else
+		{
+			clazzMapper.insert(clazz);
+		}
+		
+	}
+	
 	@Override
 	public List<Clazz> findAll() throws Exception {
 		//创建空模板
@@ -40,15 +52,6 @@ public class ClazzServiceImpl implements IClazzService{
 		return clazzMapper.selectByExampleWithBLOBs(example);
 	}
 
-	@Override
-	public void save(Clazz clazz) throws Exception {
-		clazzMapper.insert(clazz);
-	}
-
-	@Override
-	public void update(Clazz clazz) throws Exception {
-		clazzMapper.updateByPrimaryKeyWithBLOBs(clazz);
-	}
 
 	@Override
 	public void deleteById(long id) throws Exception {

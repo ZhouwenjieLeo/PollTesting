@@ -23,9 +23,4 @@
 /dist/
 /nbdist/
 /.nb-gradle/
-/.gitignore
-/.mvn/
-/QuestionnaireQuestionVMMapper.xml
-/QuestionnaireVMMapper.xml
-/mvnw
-/src/
+/bin/
