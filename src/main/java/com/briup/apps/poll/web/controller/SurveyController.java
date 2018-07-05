@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.briup.apps.poll.bean.Answers;
 import com.briup.apps.poll.bean.Survey;
 import com.briup.apps.poll.bean.extend.SurveyVM;
+import com.briup.apps.poll.service.IAnswersService;
 import com.briup.apps.poll.service.ISurveyService;
 import com.briup.apps.poll.util.MsgResponse;
 
@@ -27,6 +29,8 @@ public class SurveyController {
 	 */
 	@Autowired
 	private ISurveyService surveyService;
+	@Autowired
+	private IAnswersService answersService;
 	
 	@ApiOperation(value="登录课调",notes="code表示课调编码")
 	@GetMapping("loginSurvey")
@@ -81,6 +85,45 @@ public class SurveyController {
 			}else{
 				return MsgResponse.success("课调状态不合法："+survey.getStatus(), survey);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+	@ApiOperation(value="去审核课调",notes="返回课调基本信息以及课调中的主观题")
+	@GetMapping("toCheckSurvey")
+	public MsgResponse toCheckSurvey(long id){
+		try {
+			//1 通过id查询课调信息
+			SurveyVM surveyVM=surveyService.findById(id);
+			//2 查询该课调下所有的答案
+			List<Answers> answers=answersService.findAnswersBySurveyId(id);
+			//3 根据答卷计算平均分
+			Double average=0.0;
+			double total=0.0;    //所有学生平均分总和
+			for(Answers answer:answers){
+				String selectStr=answer.getSelections();
+				double singleTotal = 0.0;
+				double singleAverage = 0.0;
+				if(selectStr!=null){
+					String[] arr=selectStr.split("[|]");
+					
+					for(String a : arr){
+						int select=Integer.parseInt(a);
+						singleTotal+=select;		
+					}
+					 singleAverage=singleTotal/arr.length;
+				   
+				}
+				total+=singleAverage;
+			}
+			 
+			//4 设置平均分
+			 average=total/answers.size();
+			surveyVM.setAverage(average);
+			return MsgResponse.success("success", surveyVM);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());

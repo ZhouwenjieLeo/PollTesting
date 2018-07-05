@@ -44,5 +44,12 @@ public class AnswersServiceImpl implements IAnswersService {
 		answersMapper.deleteByPrimaryKey(id);
 	}
 
+	@Override
+	public List<Answers> findAnswersBySurveyId(long surveyId) throws Exception {
+		AnswersExample example = new AnswersExample();
+		example.createCriteria().andSurveyIdEqualTo(surveyId);
+		return answersMapper.selectByExample(example);
+	}
+
 
 }

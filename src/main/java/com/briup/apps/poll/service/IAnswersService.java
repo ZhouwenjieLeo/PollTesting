@@ -15,5 +15,7 @@ public interface IAnswersService {
 	   List<Answers> findAll() throws Exception;
 	   
 	   void deleteById(long id) throws Exception;
+	   //通过课调id查找答案
+	   List<Answers> findAnswersBySurveyId(long surveyId) throws Exception;
 
 }
